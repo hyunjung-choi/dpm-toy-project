@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ToyProjectApp</string>
+    <string name="mnu_contact">연락처</string>
+    <string name="mnu_gallery">갤러리</string>
+</resources>

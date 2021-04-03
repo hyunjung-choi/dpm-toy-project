@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mnu_contact"
+        android:enabled="true"
+        android:icon="@drawable/ic_contact_page_black_24dp"
+        android:title="@string/mnu_contact"/>
+
+    <item
+        android:id="@+id/mnu_gallery"
+        android:enabled="true"
+        android:icon="@drawable/ic_collections_black_24dp"
+        android:title="@string/mnu_gallery"/>
+
+</menu>
