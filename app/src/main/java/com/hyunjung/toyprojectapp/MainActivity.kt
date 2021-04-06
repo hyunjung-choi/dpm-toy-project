@@ -1,11 +1,34 @@
 package com.hyunjung.toyprojectapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
+import com.google.android.material.tabs.TabLayoutMediator
+import com.hyunjung.toyprojectapp.adapter.FragmentAdapter
+import com.hyunjung.toyprojectapp.contact.ContactFragment
+import com.hyunjung.toyprojectapp.databinding.ActivityMainBinding
+import com.hyunjung.toyprojectapp.gallery.GalleryFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : FragmentActivity() {
+
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val fragmentList = listOf(ContactFragment(), GalleryFragment())
+        val adapter = FragmentAdapter(this)
+        adapter.fragmentList = fragmentList
+        binding.mainVp.adapter = adapter
+
+        val tabTitle = listOf<String>("연락처", "갤러리")
+
+        TabLayoutMediator(binding.mainTab, binding.mainVp){ tab, position ->
+            tab.text = tabTitle[position]
+        }.attach()
+
     }
+
+
 }
