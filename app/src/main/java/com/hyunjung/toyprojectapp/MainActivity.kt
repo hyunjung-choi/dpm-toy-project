@@ -27,8 +27,6 @@ class MainActivity : FragmentActivity() {
         TabLayoutMediator(binding.mainTab, binding.mainVp){ tab, position ->
             tab.text = tabTitle[position]
         }.attach()
-
     }
-
 
 }

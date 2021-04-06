@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/contact_item_iv_profile"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/profile"/>
+
+    <TextView
+        android:id="@+id/contact_item_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_contact_name"
+        app:layout_constraintTop_toTopOf="@id/contact_item_iv_profile"
+        app:layout_constraintBottom_toBottomOf="@id/contact_item_iv_profile"
+        app:layout_constraintStart_toEndOf="@id/contact_item_iv_profile"
+        app:layout_constraintEnd_toStartOf="@id/contact_item_tv_age"/>
+
+    <TextView
+        android:id="@+id/contact_item_tv_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_contact_age"
+        app:layout_constraintTop_toTopOf="@id/contact_item_iv_profile"
+        app:layout_constraintBottom_toBottomOf="@id/contact_item_iv_profile"
+        app:layout_constraintEnd_toStartOf="@id/contact_item_tv_phone"
+        app:layout_constraintStart_toEndOf="@id/contact_item_tv_name"/>
+
+    <TextView
+        android:id="@+id/contact_item_tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_contact_phone"
+        app:layout_constraintTop_toTopOf="@id/contact_item_iv_profile"
+        app:layout_constraintBottom_toBottomOf="@id/contact_item_iv_profile"
+        app:layout_constraintEnd_toStartOf="@id/contact_item_tv_country"
+        app:layout_constraintStart_toEndOf="@id/contact_item_tv_age"/>
+
+    <TextView
+        android:id="@+id/contact_item_tv_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_contact_country"
+        app:layout_constraintTop_toTopOf="@id/contact_item_iv_profile"
+        app:layout_constraintBottom_toBottomOf="@id/contact_item_iv_profile"
+        app:layout_constraintStart_toEndOf="@id/contact_item_tv_phone"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
