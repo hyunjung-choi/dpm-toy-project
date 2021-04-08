@@ -3,13 +3,13 @@ package com.hyunjung.toyprojectapp.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hyunjung.toyprojectapp.R
+import com.bumptech.glide.Glide
 import com.hyunjung.toyprojectapp.databinding.ItemGalleryBinding
-import com.hyunjung.toyprojectapp.gallery.Photo
+import com.hyunjung.toyprojectapp.gallery.ImageDataItem
 
 class GalleryAdapter : RecyclerView.Adapter<GalleryHolder>() {
 
-    var photoData = mutableListOf<Photo>()
+    var imageData = ArrayList<ImageDataItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryHolder {
         val binding = ItemGalleryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,23 +17,18 @@ class GalleryAdapter : RecyclerView.Adapter<GalleryHolder>() {
     }
 
     override fun onBindViewHolder(holder: GalleryHolder, position: Int) {
-        val photo = photoData[position]
-        holder.setPhoto(photo)
+        val image = imageData[position]
+        holder.setPhoto(image)
     }
 
-    override fun getItemCount(): Int = photoData.size
+    override fun getItemCount(): Int = imageData.size
+
 }
 
 class GalleryHolder(private val binding: ItemGalleryBinding): RecyclerView.ViewHolder(binding.root){
 
-    fun setPhoto(photo: Photo) {
-        val id = photo.id.toInt()
-        if(id % 2 == 0){
-            binding.galleryItemIv.setImageResource(R.drawable.cherry)
-        }
-        else{
-            binding.galleryItemIv.setImageResource(R.drawable.tm)
-        }
+    fun setPhoto(image : ImageDataItem) {
+        Glide.with(itemView).load(image.download_url).into(binding.galleryItemIv)
     }
 
 }

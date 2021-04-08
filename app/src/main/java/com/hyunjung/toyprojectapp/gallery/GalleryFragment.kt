@@ -5,9 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hyunjung.toyprojectapp.adapter.GalleryAdapter
 import com.hyunjung.toyprojectapp.databinding.FragmentGalleryBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class GalleryFragment : Fragment() {
 
@@ -19,29 +25,45 @@ class GalleryFragment : Fragment() {
     ): View {
         binding = FragmentGalleryBinding.inflate(inflater, container, false)
 
-        val photoData: MutableList<Photo> = loadPhotoData()
-        val adapter = GalleryAdapter()
-        adapter.photoData = photoData
-        binding.galleryRv.adapter = adapter
-        binding.galleryRv.layoutManager = GridLayoutManager(this.context, 4)
+        loadImageData()
 
         return binding.root
     }
 
-    private fun loadPhotoData(): MutableList<Photo>{
-        val data: MutableList<Photo> = mutableListOf()
 
-        for(i in 0..10){
-            val author = "000"
-            val width = 123
-            val height = 456
-            val url = "abc"
-            val download = "abc"
+    private fun loadImageData(){
+        val retrofit = Retrofit.Builder()
+                .baseUrl(ImageApi.DOMAIN)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
 
-            val photo = Photo(i.toString(), author, width, height, url, download)
-            data.add(photo)
+        val imageInfo = retrofit.create(ImageInfo::class.java)
+
+        imageInfo.getImgageInfo().enqueue(object : Callback<ImageData>{
+            override fun onResponse(call: Call<ImageData>, response: Response<ImageData>) {
+                Toast.makeText(this@GalleryFragment.context, "성공", Toast.LENGTH_LONG).show()
+                getImagesSuccess(response.body())
+            }
+
+            override fun onFailure(call: Call<ImageData>, t: Throwable) {
+                Toast.makeText(this@GalleryFragment.context, "데이터를 가져올 수 없습니다.", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+
+    fun getImagesSuccess(response: ImageData?){
+        val data: ArrayList<ImageDataItem> = arrayListOf()
+
+        if (response != null) {
+            for(image in response){
+                data.add(image)
+            }
         }
 
-        return data
+        val adapter = GalleryAdapter()
+        adapter.imageData = data
+        binding.galleryRv.adapter = adapter
+        binding.galleryRv.layoutManager = GridLayoutManager(this.context, 4)
     }
 }
