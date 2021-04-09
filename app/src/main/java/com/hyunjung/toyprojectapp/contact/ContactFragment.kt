@@ -65,7 +65,8 @@ class ContactFragment : Fragment() {
                 val phone = etPhone.text.toString()
                 val country = etCountry.text.toString()
 
-                contactData.add(Contact(name, age, phone, country))
+                contactData.add(0, Contact(name, age, phone, country))
+                contactAdapter.notifyDataSetChanged()
 
                 mAlterDialog.dismiss()
                 Toast.makeText(this.context, "연락처가 등록되었습니다.", Toast.LENGTH_LONG).show()
