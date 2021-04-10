@@ -3,6 +3,7 @@ package com.hyunjung.toyprojectapp.contact
 import android.app.AlertDialog
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,15 +62,20 @@ class ContactFragment : Fragment() {
 
             btnOk.setOnClickListener {
                 val name = etName.text.toString()
-                val age = etAge.text.toString().toInt()
+                val age = etAge.text.toString()
                 val phone = etPhone.text.toString()
                 val country = etCountry.text.toString()
 
-                contactData.add(0, Contact(name, age, phone, country))
-                contactAdapter.notifyDataSetChanged()
+                if(TextUtils.isEmpty(name) || TextUtils.isEmpty(age) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(country)){
+                    Toast.makeText(this.context, "값을 입력해주세요.", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    contactData.add(0, Contact(name, age.toInt(), phone, country))
+                    contactAdapter.notifyDataSetChanged()
 
-                mAlterDialog.dismiss()
-                Toast.makeText(this.context, "연락처가 등록되었습니다.", Toast.LENGTH_LONG).show()
+                    mAlterDialog.dismiss()
+                    Toast.makeText(this.context, "연락처가 등록되었습니다.", Toast.LENGTH_LONG).show()
+                }
             }
 
             btnCancel.setOnClickListener {
