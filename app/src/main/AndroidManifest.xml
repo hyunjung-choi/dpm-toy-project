@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToyProjectApp">
-        <activity android:name=".gallery.ImageInfoActivity"></activity>
+        <activity android:name=".gallery.ImageInfoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
