@@ -12,7 +12,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.hyunjung.toyprojectapp.R
 import com.hyunjung.toyprojectapp.adapter.ContactAdapter
@@ -40,6 +42,18 @@ class ContactFragment : Fragment() {
         // 구분선
         val dividerItemDecoration = DividerItemDecoration(binding.contactRv.context, LinearLayoutManager(this.context).orientation)
         binding.contactRv.addItemDecoration(dividerItemDecoration)
+
+        // 밀어서 삭제하는 기능
+        val swipeToDeleteCallback = object : SwipeToDeleteCallback(){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                contactData.removeAt(position)
+                contactAdapter.notifyItemRemoved(position)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(binding.contactRv)
 
         // FAB 클릭 시, 다이얼로그 생성
         binding.contactFabAdd.setOnClickListener {
