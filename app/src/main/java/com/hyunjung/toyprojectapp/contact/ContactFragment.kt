@@ -47,6 +47,7 @@ class ContactFragment : Fragment() {
         val swipeToDeleteCallback = object : SwipeToDeleteCallback(){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
+                Toast.makeText(this@ContactFragment.context, "${contactData.get(position).Name}님을 삭제하였습니다.", Toast.LENGTH_LONG).show()
                 contactData.removeAt(position)
                 contactAdapter.notifyItemRemoved(position)
             }
