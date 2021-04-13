@@ -11,7 +11,7 @@ import com.hyunjung.toyprojectapp.gallery.ImageInfoActivity
 
 class GalleryAdapter : RecyclerView.Adapter<GalleryHolder>() {
 
-    var imageData = ArrayList<ImageDataItem>()
+    private var imageData = ArrayList<ImageDataItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryHolder {
         val binding = ItemGalleryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,6 +24,13 @@ class GalleryAdapter : RecyclerView.Adapter<GalleryHolder>() {
     }
 
     override fun getItemCount(): Int = imageData.size
+
+    // imageData를 계속 갱신하기 위해
+    fun submitList(list: List<ImageDataItem>){
+        imageData.clear()
+        imageData.addAll(list)
+        notifyDataSetChanged()
+    }
 
 }
 

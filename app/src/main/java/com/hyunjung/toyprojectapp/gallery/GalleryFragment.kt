@@ -62,7 +62,7 @@ class GalleryFragment : Fragment() {
         }
 
         val adapter = GalleryAdapter()
-        adapter.imageData = data
+        adapter.submitList(data)
         binding.galleryRv.adapter = adapter
         binding.galleryRv.layoutManager = GridLayoutManager(this.context, 4)
     }
