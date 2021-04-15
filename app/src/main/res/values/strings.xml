@@ -3,8 +3,8 @@
     <string name="mnu_contact">연락처</string>
     <string name="mnu_gallery">갤러리</string>
     <string name="item_contact_name">이름</string>
-    <string name="item_contact_age">00살</string>
-    <string name="item_contact_phone">000-0000-0000</string>
+    <string name="item_contact_age">%1$d살</string>
+    <string name="item_contact_phone">000–0000–0000</string>
     <string name="item_contact_country">국적</string>
     <string name="info_author">Author: author</string>
     <string name="info_size">Size: widthxheight</string>

@@ -2,16 +2,19 @@ package com.hyunjung.toyprojectapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.hyunjung.toyprojectapp.R
 import com.hyunjung.toyprojectapp.contact.Contact
 import com.hyunjung.toyprojectapp.databinding.ItemContactBinding
 
 class ContactAdapter : RecyclerView.Adapter<Holder>() {
 
+    private lateinit var binding: ItemContactBinding
     var contactData = mutableListOf<Contact>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        var binding = ItemContactBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_contact, parent, false)
         return Holder(binding)
     }
 
@@ -19,6 +22,7 @@ class ContactAdapter : RecyclerView.Adapter<Holder>() {
         val contact = contactData.get(position)
 
         holder.setContact(contact)
+        holder.binding.executePendingBindings()
     }
 
     override fun getItemCount(): Int = contactData.size
@@ -28,10 +32,7 @@ class ContactAdapter : RecyclerView.Adapter<Holder>() {
 class Holder(val binding: ItemContactBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun setContact(contact : Contact) {
-        binding.contactItemTvName.text = "${contact.Name}"
-        binding.contactItemTvAge.text = "${contact.age}살"
-        binding.contactItemTvPhone.text = "${contact.PhoneNum}"
-        binding.contactItemTvCountry.text = "${contact.Country}"
+        binding.contact = Contact(contact.Name, contact.age, contact.PhoneNum, contact.Country)
     }
 
 }
