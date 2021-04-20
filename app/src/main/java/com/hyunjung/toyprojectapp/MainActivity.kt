@@ -17,7 +17,7 @@ class MainActivity : FragmentActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val fragmentList = listOf(ContactFragment(), GalleryFragment())
+        val fragmentList = listOf(ContactFragment.newInstance(), GalleryFragment.newInstance())
         val adapter = FragmentAdapter(this)
         adapter.fragmentList = fragmentList
         binding.mainVp.adapter = adapter

@@ -27,6 +27,15 @@ class ContactFragment : Fragment() {
 
     private lateinit var binding : FragmentContactBinding
 
+    companion object{
+        fun newInstance(): ContactFragment{
+            val args = Bundle()
+            val fragment = ContactFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?

@@ -19,6 +19,15 @@ class GalleryFragment : Fragment() {
 
     private lateinit var binding: FragmentGalleryBinding
 
+    companion object {
+        fun newInstance(): GalleryFragment{
+            val args = Bundle()
+            val fragment = GalleryFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
